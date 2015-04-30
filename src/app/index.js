@@ -7,6 +7,7 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
    })
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
 
+
     $stateProvider
       .state('home', {
         url: '/',
@@ -18,15 +19,96 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
         templateUrl: 'app/dash/dash.html',
         controller: 'DashCtrl'
       })
-      .state('app.dashboard', {
-        url: '/dashboard',
-        templateUrl: 'app/dash/dash.html',
-        controller: 'DashCtrl'
-      }).state('app.expenses', {
-        url: '/expenses?category',
-        templateUrl: 'app/expenses/expenses.html',
-        controller: 'ExpensesCtrl'
-      });
+        .state('app.dashboard', {
+          url: '/dashboard',
+          templateUrl: 'app/dash/dash.html',
+          controller: 'DashCtrl'
+        })/***** EXPENSES ****/
+          .state('app.expenses', {
+            url: '/expenses',
+            abstract: true,
+            templateUrl: 'app/expenses/expenses.html',
+          })
+            .state('app.expenses.list', {
+              url: '',
+              views: {
+                'left-bar': {
+                  templateUrl: 'app/components/listgroup/listgroup.html',
+                  controller: 'ListgroupCtrl'
+                },
+                'right-bar': {
+                  templateUrl: 'app/expenses/expenses.list.html',
+                  controller: 'ListExpensesCtrl'
+                }
+              }
+            })
+            .state('app.expenses.categories', {
+              url: '/categories/:id',
+              views: {
+                'left-bar': {
+                  templateUrl: 'app/components/listgroup/listgroup.html',
+                  controller: 'ListgroupCtrl'
+                },
+                'right-bar': {
+                  templateUrl: 'app/expenses/expenses.list.html',
+                  controller: 'ListExpensesCtrl'
+                }
+              }
+            })
+            .state('app.expenses.create', {
+              url: '/create',
+              views: {
+                'left-bar': {
+                },
+                'right-bar': {
+                  templateUrl: 'app/expenses/create.html',
+                  controller: 'ExpenseCtrl'
+                }
+              }
+            })
+          /***** CATEGORIES ****/
+          .state('app.categories', {
+            url: '/categories',
+            abstract: true,
+            templateUrl: 'app/categories/categories.html',
+          })
+            .state('app.categories.list', {
+              url: '',
+              templateUrl: 'app/categories/categories.list.html',
+              controller: 'ListCategoriesCtrl'
+            })
+            .state('app.categories.edit', {
+              url: '/edit/:id',
+              templateUrl: 'app/categories/create.html',
+              controller: 'CategoryCtrl'
+            })
+            .state('app.categories.create', {
+              url: '/create',
+              templateUrl: 'app/categories/create.html',
+              controller: 'CategoryCtrl'
+            })
+          /***** FRIENDS ****/
+          .state('app.friends', {
+            url: '/friends',
+            abstract: true,
+            templateUrl: 'app/friends/friends.html',
+          })
+            .state('app.friends.list', {
+              url: '',
+              templateUrl: 'app/friends/friends.list.html',
+              controller: 'ListfriendsCtrl'
+            })
+            .state('app.friends.edit', {
+              url: '/edit/:id',
+              templateUrl: 'app/friends/create.html',
+              controller: 'FriendCtrl'
+            })
+            .state('app.friends.create', {
+              url: '/create',
+              templateUrl: 'app/friends/create.html',
+              controller: 'FriendCtrl'
+            })
+            ;
 
     $urlRouterProvider.otherwise('/');
 

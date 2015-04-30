@@ -7,7 +7,7 @@ angular.module('pakaWeb')
     };
 
  	$scope.isActive = function (viewLocation) { 
-        return viewLocation === $location.path();
+ 		return $location.path().lastIndexOf(viewLocation, 0) === 0;
     };
     
   });

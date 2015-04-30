@@ -4,5 +4,7 @@ $textColor: #ffffff;
 	background-color: $bgColor;
 	color: $textColor;
 	height: 580px;
-	border-radius: 0;
+}
+.container .jumbotron, .container-fluid .jumbotron{
+	border-radius: 0;	
 }

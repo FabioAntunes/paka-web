@@ -9,21 +9,21 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
       <ul class="nav navbar-nav">
         <li ui-sref-active="active"><a ui-sref="app.dashboard">Dashboard</a></li>
-        <li ui-sref-active="active"><a ui-sref="app.expenses">Expenses</a></li>
+        <li ng-class="{ active: isActive('/expenses')}"><a ui-sref="app.expenses.list">Expenses</a></li>
         <li class="dropdown" dropdown ng-class="{ active: isActive('/categories')}">
           <a href class="dropdown-toggle" role="button" dropdown-toggle aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">List All</a></li>
+            <li><a ui-sref="app.categories.list">List All</a></li>
             <li class="divider"></li>
-            <li><a href="#">New Category</a></li>
+            <li><a ui-sref="app.categories.create">New Category</a></li>
           </ul>
         </li>
         <li class="dropdown" dropdown ng-class="{ active: isActive('/friends')}">
           <a href class="dropdown-toggle" role="button" dropdown-toggle aria-haspopup="true" aria-expanded="false">Friends <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">List All</a></li>
+            <li><a ui-sref="app.friends.list">List All</a></li>
             <li class="divider"></li>
-            <li><a href="#">Add friend</a></li>
+            <li><a ui-sref="app.friends.create">Add friend</a></li>
           </ul>
         </li>
       </ul>

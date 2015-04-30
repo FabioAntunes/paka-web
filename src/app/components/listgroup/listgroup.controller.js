@@ -5,7 +5,7 @@ angular.module('pakaWeb')
 
  	$scope.isActive = function (viewLocation) { 
 
-        return !$stateParams.hasOwnProperty('category') && !viewLocation || $stateParams.category === viewLocation;
+        return !$stateParams.category && !viewLocation || $stateParams.category === viewLocation;
     };
     
   });

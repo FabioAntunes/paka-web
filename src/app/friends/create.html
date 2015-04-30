@@ -1,0 +1,22 @@
+<form class="form-horizontal col-xs-7 col-xs-offset-2" role="form"  ng-submit="create()">
+
+  <div class="form-group" collapse="login">
+    <label for="name" class="control-label sr-only">name</label>
+    <div class="col-xs-12">
+      <input type="text" class="form-control input-lg" id="name" placeholder="name" ng-model="expense.name">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email" class="control-label sr-only">email</label>
+    <div class="col-xs-12 ">
+      <input type="email" class="form-control input-lg" id="email" placeholder="email" ng-model="expense.email">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      <button type="submit" class="btn btn-lg btn-block btn-paka-green-ghost">Add</button>
+    </div>
+  </div>
+</form>

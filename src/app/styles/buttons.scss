@@ -1,11 +1,19 @@
 .btn-paka-red{
-    @include button-variant(#ffffff, #DA2C38, #AD242D);
+    @include button-variant($paka-white, $paka-red, $btn-paka-red-border);
 }
 
 .btn-paka-ghost{
-    @include button-variant(#ffffff, transparent, #ffffff);
+    @include button-variant($paka-white, transparent, $paka-white);
+}
+
+.btn-paka-green-ghost{
+    @include button-variant($paka-green, transparent, $paka-green);
 }
 
 .btn-paka-yellow{
-    @include button-variant(#ffffff, #F59F06, #D98D07);
+    @include button-variant($paka-white, $paka-yellow, $btn-paka-yellow-border);
+}
+
+.btn-paka-green{
+    @include button-variant($paka-white, $paka-green, $btn-paka-green-border);
 }

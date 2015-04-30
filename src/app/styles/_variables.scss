@@ -9,21 +9,9 @@ $btn-paka-yellow-border: darken($paka-yellow, 5%);
 $paka-green: #21a179;
 $btn-paka-green-border: darken($paka-green, 5%);
 
+$paka-blue: #073B3A;
+$btn-paka-blue-border: darken($paka-blue, 5%);
+
 $navbarHighlight    : #254441;
 $colDefault     : $paka-white;
 
-.btn-paka-red{
-    @include button-variant($paka-white, $paka-red, $btn-paka-red-border);
-}
-
-.btn-paka-ghost{
-    @include button-variant($paka-white, transparent, $paka-white);
-}
-
-.btn-paka-yellow{
-    @include button-variant($paka-white, $paka-yellow, $btn-paka-yellow-border);
-}
-
-.btn-paka-green{
-    @include button-variant($paka-white, $paka-green, $btn-paka-green-border);
-}

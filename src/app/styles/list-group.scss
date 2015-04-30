@@ -5,8 +5,8 @@
   &.active:hover,
   &.active:focus {
     color: $paka-white;
-    background-color: $paka-red;
-    border-color: $btn-paka-red-border;
+    background-color: $paka-blue;
+    border-color: $btn-paka-blue-border;
 
     // Force color to inherit for custom content
     .list-group-item-heading,
