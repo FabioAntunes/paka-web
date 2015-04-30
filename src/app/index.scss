@@ -1,0 +1,27 @@
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins.scss";
+@import "styles/_variables.scss";
+@import "styles/navbar.scss";
+@import "styles/buttons.scss";
+@import "styles/list-group.scss";
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.thumbnail {
+  height: 40px;
+
+  img.pull-right {
+    width: 10px;
+  }
+}
+
+/* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
+   all your sass files automatically */
+// injector
+// endinjector

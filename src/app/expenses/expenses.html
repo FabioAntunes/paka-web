@@ -1,0 +1,23 @@
+<div ng-include="'app/components/listgroup/listgroup.html'" class="col-xs-3"></div>
+<div class="col-xs-9">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="expense in expenses track by expense.id" ng-init="countTotal(expense.value)">
+        <td>{{ expense.description }}</td>
+        <td>{{ expense.update_at.date }}</td>
+        <td>{{ expense.value }}</td>
+      </tr>
+      <tr>
+        <td colspan="2"><strong>Total:</strong></td>
+        <td>{{ total.toFixed(2) }} €</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

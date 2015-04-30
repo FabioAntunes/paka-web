@@ -1,0 +1,6 @@
+<div class="list-group" ng-controller="ListgroupCtrl">
+  <a ui-sref="app.expenses" class="list-group-item" ng-class="{ active: isActive(false)}">All </a>
+  <a ng-repeat="category in categories" ui-sref="app.expenses({ category: category.id })" class="list-group-item" ng-class="{ active: isActive(category.id)}">
+    {{ category.name }}
+  </a>
+</div>

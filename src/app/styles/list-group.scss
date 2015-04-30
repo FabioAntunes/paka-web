@@ -1,0 +1,21 @@
+
+.list-group-item {
+  // Active class on item itself, not parent
+  &.active,
+  &.active:hover,
+  &.active:focus {
+    color: $paka-white;
+    background-color: $paka-red;
+    border-color: $btn-paka-red-border;
+
+    // Force color to inherit for custom content
+    .list-group-item-heading,
+    .list-group-item-heading > small,
+    .list-group-item-heading > .small {
+      color: inherit;
+    }
+    .list-group-item-text {
+      color: $paka-white;
+    }
+  }
+}

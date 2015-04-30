@@ -1,0 +1,11 @@
+.btn-paka-red{
+    @include button-variant(#ffffff, #DA2C38, #AD242D);
+}
+
+.btn-paka-ghost{
+    @include button-variant(#ffffff, transparent, #ffffff);
+}
+
+.btn-paka-yellow{
+    @include button-variant(#ffffff, #F59F06, #D98D07);
+}
