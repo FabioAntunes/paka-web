@@ -2,27 +2,25 @@
 
 angular.module('pakaWeb')
   .controller('FriendCtrl', function (urls, $scope, $resource, $stateParams, $state) {
-    var Category = $resource(urls.BASE_API+'/categories');
-
-    var Expense = $resource(urls.BASE_API+'/expenses');
+    var Friend = $resource(urls.BASE_API+'/friends/:id', {id:'@id'});
+    
+    $scope.friends = Friend.query();
 
     console.log($stateParams);
     
-    $scope.expense = {
-      description: null,
-      value: null,
-      category: null,
+    $scope.friend = {
+      name: null,
+      email: null
     };
 
     $scope.create = function(){
-      var expense = new Expense({
-          description: $scope.expense.description,
-          value: $scope.expense.value,
-          category_id: $scope.expense.category.id
-        });
-      expense.$save(
+      var friend = new Friend({
+        name: $scope.friend.name,
+        email: $scope.friend.email
+      });
+      friend.$save(
         function(resp, headers){
-          $state.go('app.expenses.list');
+          $state.go('app.friends.list');
         },
         function(err){
           // error callback
@@ -30,9 +28,17 @@ angular.module('pakaWeb')
           alert('erro');
       });
     }
-    
-    $scope.categories = Category.query();
 
-
-
-  });
+    $scope.delete = function(friendId){
+      var friend = new Friend({ id: friendId });
+      friend.$delete(
+        function(resp, headers){
+          $scope.friends = Friend.query();
+        },
+        function(err){
+          // error callback
+          console.log(err);
+          alert('erro');
+      });
+    }
+});

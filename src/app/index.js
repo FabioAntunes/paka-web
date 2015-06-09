@@ -96,7 +96,7 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
             .state('app.friends.list', {
               url: '',
               templateUrl: 'app/friends/friends.list.html',
-              controller: 'ListfriendsCtrl'
+              controller: 'FriendCtrl'
             })
             .state('app.friends.edit', {
               url: '/edit/:id',
