@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('pakaWeb')
-  .controller('FriendCtrl', function (urls, $scope, $resource, $stateParams, $state) {
-    var Friend = $resource(urls.BASE_API+'/friends/:id', {id:'@id'});
+  .controller('FriendCtrl', function (Friends, $scope, $stateParams, $state) {
     
     $scope.friends = Friend.query();
 
@@ -14,7 +13,7 @@ angular.module('pakaWeb')
     };
 
     $scope.create = function(){
-      var friend = new Friend({
+      var friend = new Friends({
         name: $scope.friend.name,
         email: $scope.friend.email
       });
@@ -30,10 +29,10 @@ angular.module('pakaWeb')
     }
 
     $scope.delete = function(friendId){
-      var friend = new Friend({ id: friendId });
+      var friend = new Friends({ id: friendId });
       friend.$delete(
         function(resp, headers){
-          $scope.friends = Friend.query();
+          $scope.friends = Friends.query();
         },
         function(err){
           // error callback

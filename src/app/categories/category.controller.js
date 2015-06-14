@@ -1,36 +1,58 @@
 'use strict';
 
 angular.module('pakaWeb')
-  .controller('CategoryCtrl', function (urls, $scope, $resource, $stateParams, $state) {
-    var Category = $resource(urls.BASE_API+'/categories');
+.controller('CategoryCtrl', function (Categories, $scope, $stateParams, $state) {
 
-    var Expense = $resource(urls.BASE_API+'/expenses');
-    
-    $scope.expense = {
-      description: null,
-      value: null,
-      category: null,
+  if($stateParams.id){
+    $scope.category = Categories.get($stateParams);
+    $scope.view =  {
+      title: 'Edit Category',
+      btnText: 'Save'
     };
-
-    $scope.create = function(){
-      var expense = new Expense({
-          description: $scope.expense.description,
-          value: $scope.expense.value,
-          category_id: $scope.expense.category.id
-        });
-      expense.$save(
+  }else{
+    $scope.category = new Categories({
+      name: null,
+      color: randomColor()
+    });
+    $scope.view =  {
+      title: 'Add a Category',
+      btnText: 'Create'
+    };
+  }
+  
+  $scope.randomColor = function(){
+    $scope.category.color = randomColor();
+  }
+  
+  $scope.submit = function(){
+    if($stateParams.id){
+      $scope.category.$update(
         function(resp, headers){
-          $state.go('app.expenses.list');
+          $state.go('app.categories.list');
         },
         function(err){
           // error callback
           console.log(err);
           alert('erro');
-      });
+        }
+      );
+
+    }else{
+      $scope.category.$save(
+        function(resp, headers){
+          $state.go('app.categories.list');
+        },
+        function(err){
+          // error callback
+          console.log(err);
+          alert('erro');
+        }
+      );
     }
-    
-    $scope.categories = Category.query();
+  }
+  
+  function randomColor(){
+    return '#'+Math.floor(Math.random()*16777215).toString(16);
+  }
 
-
-
-  });
+});

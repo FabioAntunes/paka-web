@@ -7,13 +7,17 @@ angular.module('pakaWeb')
 
     console.log($stateParams);
     
-    $scope.total = 0;
+    $scope.dash = {
+      categories: [],
+      total: 0,
+      hasFinished: false
+    };
 
-    $scope.countTotal = function(value){
-      $scope.total += Number(value);
-    }
+    $scope.calcTotal = function(categoryTotal){
+      $scope.dash.total += parseFloat(categoryTotal);
+    };
     
-    $scope.categories = Category.query();
+    $scope.dash.categories = Category.query();
     $scope.expenses = Expense.query();
 
   });

@@ -1,31 +1,43 @@
-<form class="form-horizontal col-xs-7" role="form"  ng-submit="create()">
-
-  <div class="form-group" collapse="login">
+<form class="col-xs-5 col-xs-offset-1" role="form"  ng-submit="submit()">
+  <h1 class="text-center" ng-bind="view.title"></h1>
+  <div class="form-group">
     <label for="description" class="control-label sr-only">Description</label>
-    <div class="col-xs-12">
-      <input type="text" class="form-control input-lg" id="description" placeholder="Description" ng-model="expense.description">
-    </div>
+    <input type="text" class="form-control input-lg" id="description" placeholder="Description" ng-model="expense.description">
   </div>
 
   <div class="form-group">
     <label for="value" class="control-label sr-only">Value</label>
-    <div class="col-xs-12 ">
-      <input type="number" min="0" step="0.01" class="form-control input-lg" id="value" placeholder="Value" ng-model="expense.value">
-    </div>
+    <input type="number" min="0" step="0.01" class="form-control input-lg" id="value" placeholder="Value" ng-model="expense.value">
   </div>
 
   <div class="form-group">
     <label for="password" class="control-label sr-only">Category</label>
-    <div class="col-xs-12">
-      <select class="form-control input-lg" required ng-options="category.name for category in categories track by category.id" ng-model="expense.category">
-       <option value="">Category</option>
-      </select>
+    <select class="form-control input-lg" required ng-options="category.id as category.name for category in categories" ng-model="expense.category_id">
+     <option value="">Choose a Category</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button type="button" class="btn btn-block btn-paka-yellow" ng-model="view.shareExpense" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+    {{ view.shareExpense ? 'Sharing expense' : 'Not sharing expense' }}
+    </button>
+  </div>
+
+  <div class="form-group" ng-controller="SearchFriendCtrl">
+    <div collapse="!view.shareExpense">
+      <div class="well well-lg">
+        <div class="row">
+          <div class="col-xs-12">
+            <input type="text" ng-model="friendSelected" typeahead="friend.name for friend in friends | filter:$viewValue | limitTo:8" typeahead-on-select="onSelect($item, $model, $label)" class="form-control">
+          </div> 
+        </div>
+      </div> 
     </div>
   </div>
 
   <div class="form-group">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-      <button type="submit" class="btn btn-lg btn-block btn-paka-green-ghost">Create</button>
+      <button type="submit" class="btn btn-lg btn-block btn-paka-green-ghost" ng-bind="view.btnText"></button>
     </div>
   </div>
 </form>

@@ -1,26 +1,15 @@
 'use strict';
 
 angular.module('pakaWeb')
-  .controller('ListCategoriesCtrl', function (urls, $scope, $resource, $stateParams) {
-    var Category = $resource(urls.BASE_API+'/categories');
+.controller('ListCategoriesCtrl', function (urls, $scope, $resource, $stateParams) {
+  var Category = $resource(urls.BASE_API+'/categories/:id', {id:'@id'});
+  
+  $scope.categories = Category.query();
 
-    var expensesUrl;
-    if($stateParams.id){
-        expensesUrl = urls.BASE_API+'/categories/'+$stateParams.id+'/expenses';
-    }else{
-      expensesUrl = urls.BASE_API+'/expenses';
-    }
-    var Expense = $resource(expensesUrl);
+  $scope.delete = function(id){
+    var user = Category.delete({id:id}, function(){
+      $scope.categories = Category.query();      
+    });
+  }
 
-    console.log($stateParams);
-    
-    $scope.total = 0;
-
-    $scope.countTotal = function(value){
-      $scope.total += Number(value);
-    }
-    
-    $scope.categories = Category.query();
-    $scope.expenses = Expense.query();
-
-  });
+});

@@ -1,7 +1,19 @@
-<div class="container-fluid">
-
-  <div ng-include="'app/components/navbar/navbar.html'" class="row"></div>
-  <div class="row" ui-view>
-    gráficos e coisas do genero
+<div class="col-xs-6 col-xs-offset-3">
+  <div class="row" ng-repeat="category in dash.categories" repeat-last>
+    <div class="row">
+      <div class="col-xs-7" ng-bind="category.name">
+      </div>
+      <div class="col-xs-5 text-right" ng-init="calcTotal(category.total)">
+        {{ category.total | number:2 }} €
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ dash.hasFinished ? category.total * 100 / dash.total : 0 }}%; background-color: {{ category.color }}">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

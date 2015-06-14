@@ -1,31 +1,33 @@
-<form class="form-horizontal col-xs-7 col-xs-offset-2" role="form"  ng-submit="create()">
-
-  <div class="form-group" collapse="login">
-    <label for="description" class="control-label sr-only">Description</label>
-    <div class="col-xs-12">
-      <input type="text" class="form-control input-lg" id="description" placeholder="Description" ng-model="expense.description">
-    </div>
+<form class="col-xs-7 col-xs-offset-2" role="form"  ng-submit="submit()">
+  <h1 class="text-center" ng-bind="view.title"></h1>
+  <div class="form-group">
+    <label for="name" class="control-label sr-only">Name</label>
+    <input type="text" class="form-control input-lg" id="name" placeholder="Name" ng-model="category.name" required>
   </div>
 
   <div class="form-group">
-    <label for="value" class="control-label sr-only">Value</label>
-    <div class="col-xs-12 ">
-      <input type="number" min="0" step="0.01" class="form-control input-lg" id="value" placeholder="Value" ng-model="expense.value">
+    <label for="Color" class="control-label sr-only">Color</label>
+    <div class="input-group">
+      <input type="text" class="form-control input-lg" id="Color" placeholder="Color" ng-model="category.color" color-picker required>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="randomColor()">Generate</button>
+      </span>
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="password" class="control-label sr-only">Category</label>
-    <div class="col-xs-12">
-      <select class="form-control input-lg" required ng-options="category.name for category in categories track by category.id" ng-model="expense.category">
-       <option value="">Category</option>
-      </select>
+  <div class="progress" ng-if="category.color">
+    <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%; background-color: {{ category.color }}">
     </div>
+  </div>
+
+  <div class="form-group sr-only">
+    <label for="color" class="control-label col-xs-12">Color</label>
+    <input type="color" class="form-control input-lg input-color" id="color-picker" placeholder="color" ng-model="category.color">
   </div>
 
   <div class="form-group">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-      <button type="submit" class="btn btn-lg btn-block btn-paka-green-ghost">Create</button>
+      <button type="submit" class="btn btn-lg btn-block btn-paka-green-ghost" ng-bind="view.btnText"></button>
     </div>
   </div>
 </form>

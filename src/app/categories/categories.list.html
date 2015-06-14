@@ -2,18 +2,18 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Edit</th>
-      <th>Delete</th>
+      <th class="table-options">Actions</th>
+      <th class="table-options"></th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="category in categories track by category.id" >
       <td>{{ category.name }}</td>
       <td>
-        <a ui-sref="app.categories.edit({ id: category.id })" class="btn btn-sm btn-paka-green-ghost ">Edit</a>
+        <a ui-sref="app.categories.edit({ id: category.id })" class="btn btn-sm btn-block btn-paka-green-ghost ">Edit</a>
       </td>
       <td>
-        <button type="button" class="btn btn-sm btn-paka-red" ng-click="delete(category.id)">Delete</a>
+        <button type="button" class="btn btn-sm btn-block btn-paka-red" ng-click="delete(category.id)">Delete</a>
       </td>
     </tr>
   </tbody>
