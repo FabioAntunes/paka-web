@@ -12,27 +12,57 @@
 
   <div class="form-group">
     <label for="password" class="control-label sr-only">Category</label>
-    <select class="form-control input-lg" required ng-options="category.id as category.name for category in categories" ng-model="expense.category_id">
+    <select class="form-control input-lg" required ng-options="category.id as category.name for category in categories" ng-model="expense.category.id">
      <option value="">Choose a Category</option>
     </select>
   </div>
 
-  <div class="form-group">
-    <button type="button" class="btn btn-block btn-paka-yellow" ng-model="view.shareExpense" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
-    {{ view.shareExpense ? 'Sharing expense' : 'Not sharing expense' }}
-    </button>
+  <div class="checkbox">
+    <label for="password" class="control-label"><strong>Share it with friends</strong></label>
+    <label class="pull-right">
+      <input type="checkbox" value="false" ng-model="view.shareExpense">
+    </label>
   </div>
 
   <div class="form-group" ng-controller="SearchFriendCtrl">
     <div collapse="!view.shareExpense">
-      <div class="well well-lg">
-        <div class="row">
-          <div class="col-xs-12">
-            <input type="text" ng-model="friendSelected" typeahead="friend.name for friend in friends | filter:$viewValue | limitTo:8" typeahead-on-select="onSelect($item, $model, $label)" class="form-control">
-          </div> 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Sharing this expense with:</h3>
         </div>
-      </div> 
-    </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="checkbox">
+                <label for="password" class="control-label"><strong>Equal amount for everyone?</strong></label>
+                <label class="pull-right">
+                  <input type="checkbox" value="true" ng-model="view.equal">
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <input type="text" placeholder="Search for a friend" ng-model="friendSelected" typeahead="friend.name for friend in friends | filter:$viewValue | limitTo:8" typeahead-on-select="onSelect($item, $model, $label)" class="form-control">
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="list-group">
+                <div class="list-group-item" ng-repeat="friend in expense.friends track by friend.id">
+                  <button ng-if="$index !== 0" type="button" class="btn btn-xs btn-paka-red-ghost" ng-click="removeFriend($index)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                  <strong ng-bind="friend.name"></strong>
+                  <span class="pull-right">
+                    {{ friend.value | number:2 }} €
+                  </span>
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div>
   </div>
 
   <div class="form-group">

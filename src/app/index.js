@@ -28,7 +28,7 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
           url: '/expenses',
           abstract: true,
           templateUrl: 'app/expenses/expenses.html',
-          controller: 'ExpenseCtrl'
+          controller: 'ExpensesCtrl'
         })
           .state('app.expenses.list', {
             url: '',
@@ -62,7 +62,8 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
               'left-bar': {
               },
               'right-bar': {
-                templateUrl: 'app/expenses/create.html'
+                templateUrl: 'app/expenses/create.html',
+                controller: 'ExpenseCtrl'
               }
             }
           })
@@ -123,23 +124,37 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
 
     $urlRouterProvider.otherwise('/');
 
-    $httpProvider.interceptors.push(['$q', '$location', '$cookieStore', function ($q, $location, $cookieStore) {
+    $httpProvider.interceptors.push(['$q', '$cookieStore', function ($q, $cookieStore) {
         return {
             'request': function (config) {
                 config.headers = config.headers || {};
-                if ($cookieStore.get('token')) {
-                    config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
+                var user = $cookieStore.get('token');
+                if (user) {
+                    config.headers.Authorization = 'Bearer ' + user.token;
                 }
                 return config;
             },
             'responseError': function (response) {
                 if (response.status === 401 || response.status === 403) {
                     $cookieStore.remove('token');
-                    $location.path('/signin');
+                    $injector.get('$state').redirectState('home');
                 }
                 return $q.reject(response);
             }
         };
     }]);
   })
+.run(['$state', '$rootScope', '$cookieStore',function($state, $rootScope, $cookieStore) {
+    $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+      var user = $cookieStore.get('token');
+      if (!user && !~toState.name.indexOf('home')) {
+        // If logged out and transitioning to a logged in page:
+        e.preventDefault();
+        $state.go('home');
+      }else if(user && ~toState.name.indexOf('home')){
+        e.preventDefault();
+        $state.go('app.dashboard');
+      }
+    });
+}])
 ;

@@ -3,7 +3,7 @@
 angular.module('pakaWeb')
   .controller('FriendCtrl', function (Friends, $scope, $stateParams, $state) {
     
-    $scope.friends = Friend.query();
+    $scope.friends = Friends.query();
 
     console.log($stateParams);
     

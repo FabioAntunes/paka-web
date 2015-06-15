@@ -2,7 +2,6 @@
 
 angular.module('pakaWeb')
   .controller('ListExpensesCtrl', function (urls, $scope, $resource, $stateParams) {
-
     var expensesUrl;
     if($stateParams.id){
         expensesUrl = urls.BASE_API+'/categories/'+$stateParams.id+'/expenses';

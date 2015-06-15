@@ -1,9 +1,17 @@
+.btn-paka-ghost{
+    @include button-variant($paka-white, transparent, $paka-white);
+}
+
 .btn-paka-red{
     @include button-variant($paka-white, $paka-red, $btn-paka-red-border);
 }
 
-.btn-paka-ghost{
-    @include button-variant($paka-white, transparent, $paka-white);
+.btn-paka-red-ghost{
+    @include button-variant($paka-red, transparent, $paka-red);
+}
+
+.btn-paka-green{
+    @include button-variant($paka-white, $paka-green, $btn-paka-green-border);
 }
 
 .btn-paka-green-ghost{
@@ -12,8 +20,4 @@
 
 .btn-paka-yellow{
     @include button-variant($paka-white, $paka-yellow, $btn-paka-yellow-border);
-}
-
-.btn-paka-green{
-    @include button-variant($paka-white, $paka-green, $btn-paka-green-border);
 }
