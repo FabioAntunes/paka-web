@@ -10,21 +10,21 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="expense in expenses track by expense.id" ng-init="countTotal(expense.value)">
+    <tr ng-repeat="expense in expenses track by expense._id" ng-init="countTotal(expense.value)">
       <td>{{ expense.description }} 
       </td>
-      <td>{{ expense.update_at.date }}</td>
+      <td>{{ expense.date[2] + '-' + expense.date[1] + '-' + expense.date[0] }}</td>
       <td class="text-right">
         {{ expense.value | number:2 }} €
       </td>
       <td>
-        <span class="label" ng-class="expense.friends.length > 1 ? 'label-success' : 'label-warning'" ng-bind="expense.friends.length > 1 ? 'Shared' : 'Private'">Shared</span>
+        <span class="label" ng-class="expense.shared.length > 1 ? 'label-success' : 'label-warning'" ng-bind="expense.shared.length > 1 ? 'Shared' : 'Private'">Shared</span>
       </td>
       <td>
-        <a ui-sref="app.expenses.edit({ id: expense.id })" class="btn btn-sm btn-block btn-paka-green-ghost ">Edit</a>
+        <a ui-sref="app.expenses.edit({ id: expense._id })" class="btn btn-sm btn-block btn-paka-green-ghost ">Edit</a>
       </td>
       <td>
-        <button type="button" class="btn btn-sm btn-block btn-paka-red" ng-click="delete(expense.id)">Delete</a>
+        <button type="button" class="btn btn-sm btn-block btn-paka-red" ng-click="delete(expense._id)">Delete</a>
       </td>
     </tr>
     <tr>

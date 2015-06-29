@@ -3,7 +3,7 @@
 angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap', 'angular-loading-bar'])
 	.constant('urls', {
        BASE: 'http://localhost:3000',
-       BASE_API: 'http://localhost:8000/api'
+       BASE_API: 'http://localhost:8000/api/v2'
    })
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
 

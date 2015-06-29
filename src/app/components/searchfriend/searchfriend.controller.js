@@ -8,7 +8,7 @@ angular.module('pakaWeb')
   $scope.view.equal = true;
 
   $scope.$watch('expense.value', function() {
-    if($scope.expense.friends.length){
+    if($scope.expense.shared && $scope.expense.shared.length){
       $scope.recalcTotal(0);
     }
   });
@@ -16,29 +16,30 @@ angular.module('pakaWeb')
   $scope.onSelect = function ($item, $model, $label) {
     var friend = $item;
     friend.value = 0;
-    $scope.expense.friends.push(friend);
+    friend.friend_id = friend._id;
+    $scope.expense.shared.push(friend);
     $scope.friendSelected = undefined;
     $scope.recalcTotal(0);
   };
 
   $scope.removeFriend = function($index){
-    $scope.expense.friends.splice($index, 1);
+    $scope.expense.shared.splice($index, 1);
     $scope.recalcTotal(0);
   };
 
   $scope.calcEqual = function(){
     var i = 0;
-    var length = $scope.expense.friends.length;
+    var length = $scope.expense.shared.length;
     var max = $scope.expense.value;
     var equalExpense = $scope.expense.value / length;
 
 
     for(i = 0; i < length; i++){
-      $scope.expense.friends[i].value = _roundToTwo(equalExpense);
-      max = _roundToTwo(max - $scope.expense.friends[i].value);
+      $scope.expense.shared[i].value = _roundToTwo(equalExpense);
+      max = _roundToTwo(max - $scope.expense.shared[i].value);
     }
 
-    $scope.expense.friends[0].value = _roundToTwo(max + $scope.expense.friends[0].value);
+    $scope.expense.shared[0].value = _roundToTwo(max + $scope.expense.shared[0].value);
   };
 
   $scope.recalcTotal = function(index){
@@ -54,7 +55,7 @@ angular.module('pakaWeb')
   };
 
   $scope.calcDiff = function(index){
-    var length = $scope.expense.friends.length;
+    var length = $scope.expense.shared.length;
     var max = $scope.expense.value;
     var equalExpense = $scope.expense.value / length;
     var delta = 0;
@@ -65,8 +66,8 @@ angular.module('pakaWeb')
 
 
     for (i = 0; i < length; i++) {
-      $scope.expense.friends[i].value = parseFloat($scope.expense.friends[i].value) * 100;
-      total += $scope.expense.friends[i].value;
+      $scope.expense.shared[i].value = parseFloat($scope.expense.shared[i].value) * 100;
+      total += $scope.expense.shared[i].value;
     }
 
     delta = ($scope.expense.value * 100 - total)/length;
@@ -74,20 +75,20 @@ angular.module('pakaWeb')
     for (i = 0; i < length; i++) {
       
       if(i !== index){
-        $scope.expense.friends[i].value = _calcNewValue(delta, $scope.expense.friends[index].value, $scope.expense.friends[i].value);
-        max = _roundToTwo(max - $scope.expense.friends[i].value);
+        $scope.expense.shared[i].value = _calcNewValue(delta, $scope.expense.shared[index].value, $scope.expense.shared[i].value);
+        max = _roundToTwo(max - $scope.expense.shared[i].value);
       }
       
     }
 
-    $scope.expense.friends[index].value = _roundToTwo($scope.expense.friends[index].value / 100);
-    max = _roundToTwo(max - $scope.expense.friends[index].value);
+    $scope.expense.shared[index].value = _roundToTwo($scope.expense.shared[index].value / 100);
+    max = _roundToTwo(max - $scope.expense.shared[index].value);
 
 
     for (i = 0; i < length; i++) {
-      leftovers = _roundToTwo($scope.expense.friends[i].value + max);
+      leftovers = _roundToTwo($scope.expense.shared[i].value + max);
       if(leftovers >= 0 && leftovers <= $scope.expense.value && i !== index){
-        $scope.expense.friends[i].value = leftovers;
+        $scope.expense.shared[i].value = leftovers;
         break;
       }
     }

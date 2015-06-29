@@ -7,11 +7,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="friend in friends track by friend.id" >
+    <tr ng-repeat="friend in friends track by friend._id" >
       <td>{{ friend.name }}</td>
       <td>{{ friend.email }}</td>
       <td>
-        <button type="button" class="btn btn-sm btn-paka-red" ng-click="delete(friend.id)">Delete</a>
+        <button type="button" class="btn btn-sm btn-paka-red" ng-click="delete(friend._id)">Delete</a>
       </td>
     </tr>
   </tbody>

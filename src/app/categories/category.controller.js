@@ -52,7 +52,11 @@ angular.module('pakaWeb')
   }
   
   function randomColor(){
-    return '#'+Math.floor(Math.random()*16777215).toString(16);
+    var hex = Math.floor(Math.random()*16777215).toString(16);
+    while(6 - hex.length){
+      hex = '0'+hex;
+    }
+    return '#'+hex;
   }
 
 });
