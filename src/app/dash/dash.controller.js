@@ -2,8 +2,6 @@
 
 angular.module('pakaWeb')
   .controller('DashCtrl', function (urls, $scope, $resource, $stateParams) {
-    var Category = $resource(urls.BASE_API+'/categories');
-    // var Expense = $resource(urls.BASE_API+'/categories/1/expenses');
 
     console.log($stateParams);
     
@@ -17,7 +15,10 @@ angular.module('pakaWeb')
       $scope.dash.total += parseFloat(categoryTotal);
     };
     
-    $scope.dash.categories = Category.query();
-    // $scope.expenses = Expense.query();
+    $scope.getExpenses = function(){
+      var Category = $resource(urls.BASE_API+'/categories', {month: $scope.$parent.radio.currentMonth+1});
+      $scope.dash.categories = Category.query();
+    }
 
+    $scope.getExpenses();
   });

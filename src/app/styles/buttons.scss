@@ -21,3 +21,7 @@
 .btn-paka-yellow{
     @include button-variant($paka-white, $paka-yellow, $btn-paka-yellow-border);
 }
+
+.months-group{
+	margin-bottom: 30px;
+}

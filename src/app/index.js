@@ -17,9 +17,10 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
       .state('app', {
         abstract: true,
         templateUrl: 'app/core/master.html',
+        controller: 'AppCtrl'
       })
         .state('app.dashboard', {
-          url: '/dashboard',
+          url: '/dashboard?month&year',
           templateUrl: 'app/dash/dash.html',
           controller: 'DashCtrl'
         })
@@ -31,7 +32,7 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
           controller: 'ExpensesCtrl'
         })
           .state('app.expenses.list', {
-            url: '',
+            url: '?month&year',
             views: {
               'left-bar': {
                 templateUrl: 'app/components/listgroup/listgroup.html',
@@ -44,7 +45,7 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
             }
           })
           .state('app.expenses.categories', {
-            url: '/categories/:id',
+            url: '/categories/:id?month&year',
             views: {
               'left-bar': {
                 templateUrl: 'app/components/listgroup/listgroup.html',
