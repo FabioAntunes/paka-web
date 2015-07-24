@@ -63,7 +63,7 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
               'left-bar': {
               },
               'right-bar': {
-                templateUrl: 'app/expenses/create.html',
+                templateUrl: 'app/expenses/expense.html',
                 controller: 'ExpenseCtrl'
               }
             }
@@ -74,7 +74,7 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
               'left-bar': {
               },
               'right-bar': {
-                templateUrl: 'app/expenses/create.html',
+                templateUrl: 'app/expenses/expense.html',
                 controller: 'ExpenseCtrl'
               }
             }
@@ -92,12 +92,12 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
             })
             .state('app.categories.edit', {
               url: '/edit/:id',
-              templateUrl: 'app/categories/create.html',
+              templateUrl: 'app/categories/category.html',
               controller: 'CategoryCtrl'
             })
             .state('app.categories.create', {
               url: '/create',
-              templateUrl: 'app/categories/create.html',
+              templateUrl: 'app/categories/category.html',
               controller: 'CategoryCtrl'
             })
           /***** FRIENDS ****/
@@ -109,16 +109,16 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
             .state('app.friends.list', {
               url: '',
               templateUrl: 'app/friends/friends.list.html',
-              controller: 'FriendCtrl'
+              controller: 'FriendsCtrl'
             })
             .state('app.friends.edit', {
               url: '/edit/:id',
-              templateUrl: 'app/friends/create.html',
+              templateUrl: 'app/friends/friend.html',
               controller: 'FriendCtrl'
             })
             .state('app.friends.create', {
               url: '/create',
-              templateUrl: 'app/friends/create.html',
+              templateUrl: 'app/friends/friend.html',
               controller: 'FriendCtrl'
             })
             ;

@@ -11,6 +11,9 @@
       <td>{{ friend.name }}</td>
       <td>{{ friend.email }}</td>
       <td>
+        <a ui-sref="app.friends.edit({ id: friend._id })" class="btn btn-sm btn-block btn-paka-green-ghost ">Edit</a>
+      </td>
+      <td>
         <button type="button" class="btn btn-sm btn-paka-red" ng-click="delete(friend._id)">Delete</a>
       </td>
     </tr>
