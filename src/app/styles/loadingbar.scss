@@ -1,0 +1,17 @@
+#loading-bar .bar {
+  background: $btn-paka-red-border;
+  height: 3px;
+}
+
+/* Fancy blur effect */
+#loading-bar .peg {
+  -moz-box-shadow: $btn-paka-red-border 1px 0 6px 1px;
+  -ms-box-shadow: $btn-paka-red-border 1px 0 6px 1px;
+  -webkit-box-shadow: $btn-paka-red-border 1px 0 6px 1px;
+  box-shadow: $btn-paka-red-border 1px 0 6px 1px;
+}
+
+#loading-bar-spinner .spinner-icon {
+  border-top-color:  $btn-paka-red-border;
+  border-left-color: $btn-paka-red-border;
+}
