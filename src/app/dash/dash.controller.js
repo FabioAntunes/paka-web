@@ -16,7 +16,7 @@ angular.module('pakaWeb')
     };
     
     $scope.getExpenses = function(){
-      var Category = $resource(urls.BASE_API+'/categories', {month: $scope.$parent.radio.currentMonth+1});
+      var Category = $resource(urls.BASE_API+'/categories/dashboard', {month: $scope.$parent.radio.currentMonth+1});
       $scope.dash.categories = Category.query();
     }
 

@@ -4,8 +4,18 @@ $dropDown       : true;
   border-color: $navbarHighlight;
   .navbar-brand {
     color: $colDefault;
+    padding: 13px 15px;
+    
+    .logo{
+      max-height: 24px;
+    }
+
     &:hover, &:focus { 
-      color: $paka-white; }}
+      color: $paka-white;
+    }
+
+
+  }
   .navbar-text {
     color: $colDefault; }
   .navbar-nav {

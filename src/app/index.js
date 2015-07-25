@@ -14,6 +14,11 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
       })
+      .state('reset', {
+        url: '/password/reset/:token',
+        templateUrl: 'app/main/reset.html',
+        controller: 'ResetCtrl'
+      })
       .state('app', {
         abstract: true,
         templateUrl: 'app/core/master.html',
@@ -148,7 +153,7 @@ angular.module('pakaWeb', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
 .run(['$state', '$rootScope', '$cookieStore',function($state, $rootScope, $cookieStore) {
     $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
       var user = $cookieStore.get('token');
-      if (!user && !~toState.name.indexOf('home')) {
+      if (!user && !~toState.name.indexOf('home') && !~toState.name.indexOf('reset')) {
         // If logged out and transitioning to a logged in page:
         e.preventDefault();
         $state.go('home');

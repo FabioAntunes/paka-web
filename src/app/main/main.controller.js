@@ -3,24 +3,28 @@
 angular.module('pakaWeb')
   .controller('MainCtrl', function ($scope, AuthSrvc) {
     $scope.login = false;
+    $scope.forgotPassword = false;
     $scope.user = {name: '', email: '', password: ''};
 
     $scope.submit = function(){
-      if($scope.login){
-        AuthSrvc.login({
-          email: $scope.user.email,
-          password: $scope.user.password
+      if($scope.forgotPassword){
+        AuthSrvc.recover({
+          email: $scope.user.email          
         });
       }else{
-        AuthSrvc.register($scope.user);
+        if($scope.login){
+          AuthSrvc.login({
+            email: $scope.user.email,
+            password: $scope.user.password
+          });
+        }else{
+          AuthSrvc.register($scope.user);
+        }
       }
     }
 
-    $scope.categories = function(){
-      AuthSrvc.categories().success(function(response){
-        console.log(response);
-      }).error(function(){
-        console.log('yolo');
-      });
+    $scope.recover = function(state){
+      $scope.login = state;
+      $scope.forgotPassword = state;
     }
   });

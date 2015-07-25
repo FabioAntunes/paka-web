@@ -10,13 +10,8 @@
       <div class="col-xs-12">
 
         <form class="form-horizontal col-xs-12 col-sm-6 col-sm-offset-3" role="form"  ng-submit="submit()">
-
-          <div class="form-group" collapse="login">
-            <label for="name" class="control-label sr-only">Name</label>
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-              <input type="text" class="form-control input-lg" id="name" placeholder="Name" ng-model="user.name">
-            </div>
-          </div>
+      
+          <h3>Reset password</h3>
 
           <div class="form-group">
             <label for="email" class="control-label sr-only">Email</label>
@@ -25,7 +20,7 @@
             </div>
           </div>
 
-          <div class="form-group" collapse="forgotPassword">
+          <div class="form-group">
             <label for="password" class="control-label sr-only">Password</label>
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
               <input type="password" class="form-control input-lg" id="password" placeholder="Password" ng-model="user.password">
@@ -33,22 +28,21 @@
           </div>
 
           <div class="form-group">
+            <label for="password" class="control-label sr-only">Confirm Password</label>
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-              <button type="submit" class="btn btn-lg btn-block btn-paka-red" ng-bind="forgotPassword ? 'Recover password' : login ? 'Log In' : 'Register'">Register</button>
+              <input type="password" class="form-control input-lg" id="password" placeholder="Confirm Password" ng-model="user.password_confirmation">
             </div>
           </div>
 
-          <div class="form-group" ng-hide="forgotPassword">
-            <div class="col-xs-6 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2 col-lg-3 col-lg-offset-3">
-              <button type="button" class="btn btn-sm btn-block btn-paka-ghost" ng-bind="!login ? 'Log In' : 'Register'" ng-click="login = !login">Log in</button>
-            </div>
-            <div class="col-xs-6 col-sm-5 col-md-4 col-lg-3">
-              <button type="button" class="btn btn-sm btn-block btn-paka-ghost" ng-click="recover(true)">Forgot password</button>
+          <div class="form-group">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+              <button type="submit" class="btn btn-lg btn-block btn-paka-red">Reset</button>
             </div>
           </div>
+
           <div class="form-group" ng-hide="!forgotPassword">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-              <button type="button" class="btn btn-sm btn-block btn-paka-ghost" ng-click="recover(false)">Back</button>
+              <a type="button" class="btn btn-sm btn-block btn-paka-ghost" ui-sref="home">Back</a>
             </div>
           </div>
         </form>
